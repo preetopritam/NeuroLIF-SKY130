@@ -80,7 +80,9 @@ ARCH_MANIFEST = (
 )
 
 SYNAPSE_FINAL_RECORD = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
     / "neurolif_synapse_final_verification_v1.json"
 )
 

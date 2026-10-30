@@ -56,7 +56,9 @@ INPUT_MANIFEST = (
 )
 
 REFERENCE_SPICE = (
-    NEURON_DIR
+    PROJECT_ROOT
+    / "circuit"
+    / "reference"
     / "neurolif_full_neuron_reference_v1.spice"
 )
 

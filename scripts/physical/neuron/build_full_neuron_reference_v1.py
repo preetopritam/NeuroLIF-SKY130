@@ -51,7 +51,9 @@ NEURON_DIR.mkdir(
 )
 
 REFERENCE_SPICE = (
-    NEURON_DIR
+    PROJECT_ROOT
+    / "circuit"
+    / "reference"
     / "neurolif_full_neuron_reference_v1.spice"
 )
 
@@ -63,7 +65,7 @@ ARCH_MANIFEST = (
 
 SYNAPSE_FINAL_RECORD = (
     PROJECT_ROOT
-    / "layout"
+    / "verification"
     / "synapse"
     / "neurolif_synapse_final_verification_v1.json"
 )
