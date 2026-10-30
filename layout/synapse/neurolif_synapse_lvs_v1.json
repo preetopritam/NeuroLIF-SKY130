@@ -12,7 +12,7 @@
     "gds": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_lvs_v1.gds",
     "oas": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_lvs_v1.oas",
     "top": "NEUROLIF_WEIGHTED_SYNAPSE_LVS_V1",
-    "reference_spice": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_reference_v1.spice"
+    "reference_spice": "<REPO_ROOT>\\circuit\\reference\\neurolif_synapse_reference_v1.spice"
   },
   "lvs_labels": [
     {
