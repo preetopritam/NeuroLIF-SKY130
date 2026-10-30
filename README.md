@@ -146,6 +146,25 @@ This is an implementation-specific observation. It is not intended as a general 
 
 ![Final weighted-synapse layout](figures/layout/klayout_weighted_synapse.png)
 
+### Membrane Dynamics versus Synaptic Weight
+
+The transistor-level transient response shows how the synaptic weight changes the membrane-voltage dynamics.
+
+- `00` (0×): no firing; the membrane voltage decays below threshold
+- `01` (1×): lowest nonzero synaptic drive and lowest nonzero firing rate
+- `10` (2×): stronger synaptic drive and higher firing rate
+- `11` (3×): strongest synaptic drive and highest firing rate
+
+The dashed line marks the nominal rising Schmitt threshold:
+
+```text
+VTH_UP = 1.023948 V
+```
+
+The plotted waveforms are the original transistor-level simulation results; the added annotation area does not modify the waveform data.
+
+![Membrane dynamics versus synaptic weight](figures/membrane_dynamics_vs_synaptic_weight_exact.png)
+
 ---
 
 ## Membrane, Leak and Threshold Detection
@@ -432,7 +451,7 @@ NeuroLIF-SKY130/
 │
 ├── circuit/       # reference and LVS schematics
 ├── docs/          # architecture, circuit, physical design and verification
-├── figures/       # real KLayout and verification screenshots
+├── figures/       # layout, simulation and verification figures
 ├── layout/        # canonical GDS/OASIS artifacts
 ├── notebooks/     # clean result-analysis notebooks
 ├── results/       # frozen simulation summaries
