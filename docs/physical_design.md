@@ -283,8 +283,9 @@ This includes:
 - staged routing of power, membrane and internal nodes
 - final reset-path routing
 
-The public scripts are being normalized to the curated repository structure. The final standalone DRC and LVS reproduction runners already use repository-relative project paths rather than personal machine-specific paths.
+The public scripts use curated repository paths for shared public references and final verification inputs. The final standalone DRC and LVS reproduction runners and the full-neuron connectivity audit use repository-relative project paths rather than personal machine-specific paths.
 
+Some historical construction stages still depend on intermediate GDS files or manifests that are intentionally not included in the curated public release. This is an artifact-retention boundary rather than a path-normalization defect.
 ## Scope and Limitations
 
 This is a pre-silicon educational physical-design implementation using the open SKY130 PDK.
