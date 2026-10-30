@@ -1,6 +1,6 @@
 STDOUT
 ================================================================================
-Reading netlist: C:/Users/preet/NeuroLIF-SKY130/layout/synapse/neurolif_synapse_reference_v1.spice ..
+Reading netlist: <DEV_ROOT>/layout/synapse/neurolif_synapse_reference_v1.spice ..
 "input" in: sky130.lvs:901
     Polygons (raw): 7 (flat)  2 (hierarchical)
     Elapsed: 0.001s  Memory: 357.00M
@@ -2968,8 +2968,8 @@ Flatten layout cell (no schematic): P_SYN_W0840_L0500
 Flatten layout cell (no schematic): P_TAP_VSS_W1000_H1000
 Flatten layout cell (no schematic): N_LOGIC_W1000_L0150
 Flatten layout cell (no schematic): NEUROLIF_M1_M2_TRANSITION_W0500_H0500
-Writing netlist: C:/Users/preet/NeuroLIF-SKY130/layout/synapse/neurolif_synapse_extracted_v1.cir ..
-Writing LVS database: C:/Users/preet/NeuroLIF-SKY130/layout/synapse/neurolif_synapse_lvs_v1.lvsdb ..
+Writing netlist: <DEV_ROOT>/layout/synapse/neurolif_synapse_extracted_v1.cir ..
+Writing LVS database: <DEV_ROOT>/layout/synapse/neurolif_synapse_lvs_v1.lvsdb ..
 Total elapsed: 1.840s  Memory: 370.00M
 2026-10-30 17:42:47 +0600: Extracting sky130_fd_pr__cap_vpp_02p7x41p1_m1m2m3m4_shieldl1_fingercap
 2026-10-30 17:42:47 +0600: Extracting sky130_fd_pr__cap_vpp_02p9x06p1_m1m2m3m4_shieldl1_fingercap2
