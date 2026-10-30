@@ -6,7 +6,7 @@
     "gds": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.gds",
     "top": "NEUROLIF_FULL_NEURON_FINAL_ROUTED_V1",
     "sha256": "74fcc1478c50e2fd590d333e576c99fd1fec03d72c43f3679c15fd50e8d9a6de",
-    "final_drc_report": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_final_routed_v1_drc.lyrdb"
+    "final_drc_report": "<REPO_ROOT>\\verification\\neuron\\drc\\neurolif_full_neuron_final_routed_v1_drc.lyrdb"
   },
   "design": {
     "mos_count": 17,
