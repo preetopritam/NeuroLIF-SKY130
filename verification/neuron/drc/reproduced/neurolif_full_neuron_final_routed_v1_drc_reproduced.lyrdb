@@ -2,7 +2,7 @@
 <report-database>
  <description>SKY130 DRC runset</description>
  <original-file/>
- <generator>drc: script='C:\\Users\\preet\\KLayout\\salt\\Efabless_sky130\\tech\\sky130\\drc\\sky130A_mr.drc'</generator>
+ <generator>drc: script='<USER_HOME>\\KLayout\\salt\\Efabless_sky130\\tech\\sky130\\drc\\sky130A_mr.drc'</generator>
  <top-cell>NEUROLIF_FULL_NEURON_FINAL_ROUTED_V1</top-cell>
  <tags>
  </tags>
