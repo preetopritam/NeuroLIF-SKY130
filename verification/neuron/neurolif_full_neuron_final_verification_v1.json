@@ -30,12 +30,12 @@
   },
   "verification": {
     "official_sky130_drc": {
-      "report": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_final_routed_v1_drc.lyrdb",
+      "report": "<REPO_ROOT>\\verification\\neuron\\drc\\neurolif_full_neuron_final_routed_v1_drc.lyrdb",
       "violations": 0,
       "pass": true
     },
     "geometry_connectivity_topology": {
-      "audit": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_final_connectivity_audit_v1.json",
+      "audit": "<REPO_ROOT>\\verification\\neuron\\connectivity\\neurolif_full_neuron_final_connectivity_audit_v1.json",
       "pass": true,
       "logical_nets": 14,
       "unique_logical_roots": 14,
@@ -52,11 +52,11 @@
       "labels_valid": true
     },
     "official_klayout_lvs": {
-      "report": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_lvs_v1.lvsdb",
-      "log": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_lvs_v1.log",
-      "reference_spice": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_lvs_reference_v1.spice",
+      "report": "<REPO_ROOT>\\verification\\neuron\\lvs\\neurolif_full_neuron_lvs_v1.lvsdb",
+      "log": "<REPO_ROOT>\\verification\\neuron\\lvs\\neurolif_full_neuron_lvs_v1.log",
+      "reference_spice": "<REPO_ROOT>\\circuit\\lvs\\neurolif_full_neuron_lvs_reference_v1.spice",
       "reference_sha256": "0bc4e1367995d234e01e1cec278a08d41d5f1307474cb2d587c1631c38cb0255",
-      "extracted_netlist": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_extracted_v1.cir",
+      "extracted_netlist": "<REPO_ROOT>\\verification\\neuron\\lvs\\neurolif_full_neuron_extracted_v1.cir",
       "netlists_match": true,
       "extracted_mos": 17,
       "extracted_pfet": 8,
