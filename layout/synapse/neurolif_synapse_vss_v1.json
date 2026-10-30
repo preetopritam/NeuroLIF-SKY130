@@ -1,0 +1,51 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "block": "corrected_weighted_synapse",
+  "revision": "vss_v1",
+  "top_cell": "NEUROLIF_WEIGHTED_SYNAPSE_VSS_V1",
+  "parent_cell": "NEUROLIF_WEIGHTED_SYNAPSE_WEIGHT_GATES_V2",
+  "canonical_input": "neurolif_synapse_weight_gates_v2.gds",
+  "routed_nets": [
+    "VDD",
+    "VBIAS",
+    "P_U1A_TO_SW1A",
+    "P_U0_TO_SW0",
+    "P_U1B_TO_SW1B",
+    "VMEM",
+    "GATE_W0",
+    "GATE_W1",
+    "VSS"
+  ],
+  "unrouted_internal_nets": [],
+  "vss": {
+    "purpose": "NMOS p-substrate body tie only",
+    "target": "P_TAP_VSS",
+    "metal": "metal1",
+    "rail_bbox_um": [
+      -4.0,
+      2.8,
+      -2.0,
+      3.2
+    ],
+    "p_tap_m1_bbox_um": [
+      -2.5,
+      2.5,
+      -1.5,
+      3.5
+    ],
+    "tap_overlap_um": {
+      "x": 0.5,
+      "y": 0.4
+    }
+  },
+  "checks": {
+    "vss_touches_p_tap": true,
+    "positive_area_tap_connection": true,
+    "nearest_signal_spacing": true,
+    "signal_isolation": true,
+    "m1_count": true,
+    "gds_write": true,
+    "oas_write": true,
+    "readback": true
+  }
+}

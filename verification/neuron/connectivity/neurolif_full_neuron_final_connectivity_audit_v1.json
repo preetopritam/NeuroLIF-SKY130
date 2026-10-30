@@ -1,0 +1,80 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "step": "39A",
+  "audit": "full_neuron_geometry_connectivity_topology",
+  "input": {
+    "gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.gds",
+    "top": "NEUROLIF_FULL_NEURON_FINAL_ROUTED_V1",
+    "sha256": "74fcc1478c50e2fd590d333e576c99fd1fec03d72c43f3679c15fd50e8d9a6de",
+    "final_drc_report": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1_drc.lyrdb"
+  },
+  "design": {
+    "mos_count": 17,
+    "expected_mos_count": 17,
+    "expected_logical_conductor_nets": 14,
+    "physical_cmem": false,
+    "cmem_policy": "external_ideal_5pF_from_VMEM_to_VSS"
+  },
+  "net_roots": {
+    "VDD": 50,
+    "VSS": 40,
+    "VBIAS": 25,
+    "SYN_BRANCH_U1A": 4,
+    "SYN_BRANCH_U0": 6,
+    "SYN_BRANCH_U1B": 8,
+    "VMEM": 3,
+    "GATE_W0": 1,
+    "GATE_W1": 0,
+    "VLEAK": 34,
+    "P_MID": 41,
+    "N_MID": 28,
+    "VRAW": 16,
+    "SPIKE": 17
+  },
+  "external_nets": [
+    "VDD",
+    "VSS",
+    "VBIAS",
+    "GATE_W0",
+    "GATE_W1",
+    "VLEAK",
+    "VMEM",
+    "SPIKE"
+  ],
+  "internal_nets": [
+    "SYN_BRANCH_U1A",
+    "SYN_BRANCH_U0",
+    "SYN_BRANCH_U1B",
+    "P_MID",
+    "N_MID",
+    "VRAW"
+  ],
+  "checks": {
+    "device_count": true,
+    "reference_instances": true,
+    "via_mapping": true,
+    "terminal_mapping": true,
+    "gate_pair_mapping": true,
+    "gate_roots": true,
+    "added_10mos_topology": true,
+    "weighted_synapse_topology": true,
+    "branch_discovery": true,
+    "net_roots_complete": true,
+    "logical_net_count": 14,
+    "unique_logical_root_count": 14,
+    "no_cross_net_shorts": true,
+    "actual_conductor_root_count": 14,
+    "no_unaccounted_conductor_roots": true,
+    "nwell_count": true,
+    "ntap_count": true,
+    "ptap_count": true,
+    "ntaps_to_vdd": true,
+    "ptaps_to_vss": true,
+    "pmos_in_tied_nwell": true,
+    "nmos_outside_nwell": true,
+    "body_ties": true,
+    "external_roots_distinct": true,
+    "input_unchanged": true
+  },
+  "step39a_pass": true
+}

@@ -1,0 +1,5 @@
+weight,active_unit_cells,median_delivered_current_A,median_delivered_current_nA,normalized_to_weight_01
+00,0,1.68e-12,0.00168,0.0
+01,1,1.037342e-07,103.7342,1.0
+10,2,2.0747e-07,207.47,2.000015424
+11,3,3.112059e-07,311.2059,3.000031812

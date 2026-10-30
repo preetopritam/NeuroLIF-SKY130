@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use NeuroLIF-SKY130 in research or academic work, please cite this repository."
+title: "NeuroLIF-SKY130: Transistor-Level Leaky Integrate-and-Fire Neuron with Weighted Synaptic Input and Robustness Characterization"
+type: software
+
+authors:
+  - name: "preetopritam"
+
+repository-code: "https://github.com/preetopritam/NeuroLIF-SKY130"
+
+license: MIT
+version: "1.0.0"
+date-released: "2026-10-31"
+
+keywords:
+  - neuromorphic computing
+  - leaky integrate-and-fire neuron
+  - LIF neuron
+  - SKY130
+  - CMOS
+  - weighted synapse
+  - analog VLSI
+  - physical design
+  - KLayout
+  - ngspice
+
+abstract: >
+  NeuroLIF-SKY130 is a pre-silicon educational neuromorphic circuit-design
+  project implementing a transistor-level leaky integrate-and-fire neuron
+  using the open SKY130 PDK. The design includes a corrected 2-bit weighted
+  electronic synapse, membrane integration and leak, a CMOS Schmitt threshold
+  detector, output buffering and spike-controlled reset. The public repository
+  includes transistor-level validation, PVT and deterministic variation
+  summaries, physical-layout construction scripts and DRC, connectivity and
+  LVS verification evidence.

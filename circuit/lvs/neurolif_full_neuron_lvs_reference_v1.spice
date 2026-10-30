@@ -1,0 +1,44 @@
+* ============================================================
+* NeuroLIF-SKY130 — full-neuron LVS reference v1
+*
+* Pre-silicon educational SKY130 neuron core.
+* Physical Cmem is intentionally external.
+* Expected MOS: 17 total = 8 PFET + 9 NFET.
+* ============================================================
+
+.subckt NEUROLIF_FULL_NEURON_LVS_V1 VDD VSS VBIAS GATE_W0 GATE_W1 VLEAK VMEM SPIKE
+
+* ------------------------------------------------------------
+* Corrected 2-bit weighted synapse — 7 MOS
+* ------------------------------------------------------------
+MP_REF VBIAS VBIAS VDD VDD sky130_fd_pr__pfet_01v8 w=0.84u l=0.50u
+MP_U1A SYN_BR_U1A VBIAS VDD VDD sky130_fd_pr__pfet_01v8 w=0.84u l=0.50u
+MP_U0 SYN_BR_U0 VBIAS VDD VDD sky130_fd_pr__pfet_01v8 w=0.84u l=0.50u
+MP_U1B SYN_BR_U1B VBIAS VDD VDD sky130_fd_pr__pfet_01v8 w=0.84u l=0.50u
+MN_SW1A SYN_BR_U1A GATE_W1 VMEM VSS sky130_fd_pr__nfet_01v8 w=1.00u l=0.15u
+MN_SW0 SYN_BR_U0 GATE_W0 VMEM VSS sky130_fd_pr__nfet_01v8 w=1.00u l=0.15u
+MN_SW1B SYN_BR_U1B GATE_W1 VMEM VSS sky130_fd_pr__nfet_01v8 w=1.00u l=0.15u
+
+* ------------------------------------------------------------
+* Corrected 6T Schmitt threshold detector
+* ------------------------------------------------------------
+MP_ST1 P_MID VMEM VDD VDD sky130_fd_pr__pfet_01v8 w=2.00u l=0.15u
+MP_ST2 VRAW VMEM P_MID VDD sky130_fd_pr__pfet_01v8 w=2.00u l=0.15u
+MN_ST1 VRAW VMEM N_MID VSS sky130_fd_pr__nfet_01v8 w=1.00u l=0.15u
+MN_ST2 N_MID VMEM VSS VSS sky130_fd_pr__nfet_01v8 w=1.00u l=0.15u
+MN_FB VDD VRAW N_MID VSS sky130_fd_pr__nfet_01v8 w=0.42u l=0.30u
+MP_FB VSS VRAW P_MID VDD sky130_fd_pr__pfet_01v8 w=0.42u l=0.30u
+
+* ------------------------------------------------------------
+* Output inverter
+* ------------------------------------------------------------
+MP_BUF SPIKE VRAW VDD VDD sky130_fd_pr__pfet_01v8 w=2.00u l=0.15u
+MN_BUF SPIKE VRAW VSS VSS sky130_fd_pr__nfet_01v8 w=1.00u l=0.15u
+
+* ------------------------------------------------------------
+* Leak + spike reset
+* ------------------------------------------------------------
+MN_LEAK VMEM VLEAK VSS VSS sky130_fd_pr__nfet_01v8 w=0.42u l=1.00u
+MN_RST VMEM SPIKE VSS VSS sky130_fd_pr__nfet_01v8 w=1.20u l=0.15u
+
+.ends NEUROLIF_FULL_NEURON_LVS_V1

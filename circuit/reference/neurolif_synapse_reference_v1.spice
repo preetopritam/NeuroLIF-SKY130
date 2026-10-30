@@ -1,0 +1,39 @@
+* ================================================================
+* NeuroLIF-SKY130
+* Corrected 2-bit weighted synapse
+* LVS reference schematic V1
+*
+* Generated for:
+*   NEUROLIF_WEIGHTED_SYNAPSE_LVS_V1
+*
+* External pins:
+*   VDD VSS VBIAS GATE_W0 GATE_W1 VMEM
+*
+* SPICE MOS syntax:
+*   Mname D G S B model W=... L=...
+* ================================================================
+
+.SUBCKT NEUROLIF_WEIGHTED_SYNAPSE_LVS_V1 VDD VSS VBIAS GATE_W0 GATE_W1 VMEM
+
+* ------------------------------------------------
+* PMOS reference + three identical unit branches
+* W = 0.84 um
+* L = 0.50 um
+* ------------------------------------------------
+
+MP_REF  VBIAS  VBIAS    VDD   VDD  sky130_fd_pr__pfet_01v8 W=0.84u L=0.50u
+MP_U1A  N_U1A  VBIAS    VDD   VDD  sky130_fd_pr__pfet_01v8 W=0.84u L=0.50u
+MP_U0   N_U0   VBIAS    VDD   VDD  sky130_fd_pr__pfet_01v8 W=0.84u L=0.50u
+MP_U1B  N_U1B  VBIAS    VDD   VDD  sky130_fd_pr__pfet_01v8 W=0.84u L=0.50u
+
+* ------------------------------------------------
+* NMOS weight-selection switches
+* W = 1.00 um
+* L = 0.15 um
+* ------------------------------------------------
+
+MN_SW1A N_U1A  GATE_W1  VMEM  VSS  sky130_fd_pr__nfet_01v8 W=1.00u L=0.15u
+MN_SW0  N_U0   GATE_W0  VMEM  VSS  sky130_fd_pr__nfet_01v8 W=1.00u L=0.15u
+MN_SW1B N_U1B  GATE_W1  VMEM  VSS  sky130_fd_pr__nfet_01v8 W=1.00u L=0.15u
+
+.ENDS NEUROLIF_WEIGHTED_SYNAPSE_LVS_V1

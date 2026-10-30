@@ -1,0 +1,90 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "step": "28A",
+  "artifact": "weighted_synapse_lvs_derivative_v1",
+  "input": {
+    "gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_vss_v1.gds",
+    "top": "NEUROLIF_WEIGHTED_SYNAPSE_VSS_V1",
+    "sha256": "491a75596772ca659f88b5a22ca99f323cdd230a0cfa813ba65de2ab1f7a5fda",
+    "status": "Step 25B DRC clean; Step 26A connectivity pass"
+  },
+  "output": {
+    "gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_lvs_v1.gds",
+    "oas": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_lvs_v1.oas",
+    "top": "NEUROLIF_WEIGHTED_SYNAPSE_LVS_V1",
+    "reference_spice": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_reference_v1.spice"
+  },
+  "lvs_labels": [
+    {
+      "name": "VDD",
+      "layer": "68/5",
+      "x_um": 0.0,
+      "y_um": 10.0,
+      "anchor_on_conductor": true
+    },
+    {
+      "name": "VSS",
+      "layer": "68/5",
+      "x_um": -3.0,
+      "y_um": 3.0,
+      "anchor_on_conductor": true
+    },
+    {
+      "name": "VBIAS",
+      "layer": "68/5",
+      "x_um": 5.0,
+      "y_um": 6.8,
+      "anchor_on_conductor": true
+    },
+    {
+      "name": "GATE_W0",
+      "layer": "68/5",
+      "x_um": 7.0,
+      "y_um": 1.7,
+      "anchor_on_conductor": true
+    },
+    {
+      "name": "GATE_W1",
+      "layer": "68/5",
+      "x_um": 5.0,
+      "y_um": 4.7,
+      "anchor_on_conductor": true
+    },
+    {
+      "name": "VMEM",
+      "layer": "69/5",
+      "x_um": 4.0,
+      "y_um": 1.0,
+      "anchor_on_conductor": true
+    }
+  ],
+  "external_pins": [
+    "VDD",
+    "VSS",
+    "VBIAS",
+    "GATE_W0",
+    "GATE_W1",
+    "VMEM"
+  ],
+  "internal_unlabeled_nets": [
+    "N_U1A",
+    "N_U0",
+    "N_U1B"
+  ],
+  "reference_devices": {
+    "pfet_01v8": 4,
+    "nfet_01v8": 3,
+    "total_mos": 7
+  },
+  "checks": {
+    "anchors_on_conductors": true,
+    "label_count": true,
+    "label_names": true,
+    "physical_geometry_unchanged": true,
+    "reference_spice": true,
+    "gds_write": true,
+    "oas_write": true,
+    "gds_readback": true,
+    "frozen_source_unchanged": true
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "record": "full_neuron_final_physical_verification_v1",
+  "status": "CLOSED",
+  "claim_boundary": "Pre-silicon educational neuromorphic circuit-design project using the open SKY130 PDK; no fabricated-silicon or tapeout claim.",
+  "canonical_physical_artifact": {
+    "gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.gds",
+    "sha256": "74fcc1478c50e2fd590d333e576c99fd1fec03d72c43f3679c15fd50e8d9a6de"
+  },
+  "design": {
+    "architecture": "transistor-level leaky integrate-and-fire neuron",
+    "mos_total": 17,
+    "pfet": 8,
+    "nfet": 9,
+    "logical_conductor_nets": 14,
+    "external_pins": [
+      "VDD",
+      "VSS",
+      "VBIAS",
+      "GATE_W0",
+      "GATE_W1",
+      "VLEAK",
+      "VMEM",
+      "SPIKE"
+    ],
+    "cmem": {
+      "physical": false,
+      "policy": "external ideal 5 pF from VMEM to VSS"
+    }
+  },
+  "verification": {
+    "official_sky130_drc": {
+      "report": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1_drc.lyrdb",
+      "violations": 0,
+      "pass": true
+    },
+    "geometry_connectivity_topology": {
+      "audit": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_connectivity_audit_v1.json",
+      "pass": true,
+      "logical_nets": 14,
+      "unique_logical_roots": 14,
+      "conductor_roots": 14,
+      "cross_net_shorts": false,
+      "floating_conductor_nets": false,
+      "body_ties": true
+    },
+    "lvs_derivative": {
+      "gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_lvs_v1.gds",
+      "sha256": "334824e19e186f69e10a7b34e0d77338c069bfc2a04a34a8c5460f7bda066d7f",
+      "source_physical_hash_match": true,
+      "physical_geometry_unchanged": true,
+      "labels_valid": true
+    },
+    "official_klayout_lvs": {
+      "report": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_lvs_v1.lvsdb",
+      "log": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_lvs_v1.log",
+      "reference_spice": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_lvs_reference_v1.spice",
+      "reference_sha256": "0bc4e1367995d234e01e1cec278a08d41d5f1307474cb2d587c1631c38cb0255",
+      "extracted_netlist": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_extracted_v1.cir",
+      "netlists_match": true,
+      "extracted_mos": 17,
+      "extracted_pfet": 8,
+      "extracted_nfet": 9,
+      "top_level_pins_pass": true
+    }
+  },
+  "final_verification_pass": true
+}

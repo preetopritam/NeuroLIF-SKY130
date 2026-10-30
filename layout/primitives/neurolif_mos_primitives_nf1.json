@@ -1,0 +1,205 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "primitive_revision": "nf1_corrected",
+  "technology": "SKY130",
+  "dbu_um": 0.001,
+  "generator_rule": "All MOS primitives generated with explicit nf=1 and interdig=0.",
+  "deprecated_previous_library": "neurolif_mos_primitives.gds",
+  "canonical_candidate": "neurolif_mos_primitives_nf1.gds",
+  "top_cell": "NEUROLIF_MOS_PRIMITIVES_NF1",
+  "all_single_finger": true,
+  "devices": [
+    {
+      "name": "N_LOGIC_W1000_L0150",
+      "kind": "nfet",
+      "type": "sky130_fd_pr__nfet_01v8",
+      "w": 1.0,
+      "l": 0.15,
+      "roles": [
+        "main Schmitt NMOS",
+        "synapse switch NMOS",
+        "output inverter NMOS"
+      ],
+      "nf": 1,
+      "interdig": 0,
+      "physical_gate_fingers": 1,
+      "bbox_dbu": [
+        -125,
+        -540,
+        875,
+        1540
+      ]
+    },
+    {
+      "name": "P_LOGIC_W2000_L0150",
+      "kind": "pfet",
+      "type": "sky130_fd_pr__pfet_01v8",
+      "w": 2.0,
+      "l": 0.15,
+      "roles": [
+        "main Schmitt PMOS",
+        "output inverter PMOS"
+      ],
+      "nf": 1,
+      "interdig": 0,
+      "physical_gate_fingers": 1,
+      "bbox_dbu": [
+        -305,
+        -720,
+        1055,
+        2720
+      ]
+    },
+    {
+      "name": "N_FB_W0420_L0300",
+      "kind": "nfet",
+      "type": "sky130_fd_pr__nfet_01v8",
+      "w": 0.42,
+      "l": 0.3,
+      "roles": [
+        "Schmitt NFET feedback"
+      ],
+      "nf": 1,
+      "interdig": 0,
+      "physical_gate_fingers": 1,
+      "bbox_dbu": [
+        -125,
+        -540,
+        1025,
+        960
+      ]
+    },
+    {
+      "name": "P_FB_W0420_L0300",
+      "kind": "pfet",
+      "type": "sky130_fd_pr__pfet_01v8",
+      "w": 0.42,
+      "l": 0.3,
+      "roles": [
+        "Schmitt PFET feedback"
+      ],
+      "nf": 1,
+      "interdig": 0,
+      "physical_gate_fingers": 1,
+      "bbox_dbu": [
+        -305,
+        -720,
+        1205,
+        1140
+      ]
+    },
+    {
+      "name": "P_SYN_W0840_L0500",
+      "kind": "pfet",
+      "type": "sky130_fd_pr__pfet_01v8",
+      "w": 0.84,
+      "l": 0.5,
+      "roles": [
+        "PMOS current-mirror reference",
+        "synaptic unit PMOS 0",
+        "synaptic unit PMOS 1A",
+        "synaptic unit PMOS 1B"
+      ],
+      "nf": 1,
+      "interdig": 0,
+      "physical_gate_fingers": 1,
+      "bbox_dbu": [
+        -305,
+        -720,
+        1405,
+        1560
+      ]
+    },
+    {
+      "name": "N_LEAK_W0420_L1000",
+      "kind": "nfet",
+      "type": "sky130_fd_pr__nfet_01v8",
+      "w": 0.42,
+      "l": 1.0,
+      "roles": [
+        "membrane leak transistor"
+      ],
+      "nf": 1,
+      "interdig": 0,
+      "physical_gate_fingers": 1,
+      "bbox_dbu": [
+        -125,
+        -540,
+        1725,
+        960
+      ]
+    },
+    {
+      "name": "N_RESET_W1200_L0150",
+      "kind": "nfet",
+      "type": "sky130_fd_pr__nfet_01v8",
+      "w": 1.2,
+      "l": 0.15,
+      "roles": [
+        "SPIKE-controlled membrane reset"
+      ],
+      "nf": 1,
+      "interdig": 0,
+      "physical_gate_fingers": 1,
+      "bbox_dbu": [
+        -125,
+        -540,
+        875,
+        1740
+      ]
+    }
+  ],
+  "used_layers": [
+    {
+      "internal_index": 45,
+      "layer": 65,
+      "datatype": 20
+    },
+    {
+      "internal_index": 46,
+      "layer": 66,
+      "datatype": 44
+    },
+    {
+      "internal_index": 47,
+      "layer": 67,
+      "datatype": 20
+    },
+    {
+      "internal_index": 48,
+      "layer": 67,
+      "datatype": 44
+    },
+    {
+      "internal_index": 49,
+      "layer": 68,
+      "datatype": 20
+    },
+    {
+      "internal_index": 50,
+      "layer": 66,
+      "datatype": 20
+    },
+    {
+      "internal_index": 51,
+      "layer": 95,
+      "datatype": 20
+    },
+    {
+      "internal_index": 52,
+      "layer": 93,
+      "datatype": 44
+    },
+    {
+      "internal_index": 53,
+      "layer": 94,
+      "datatype": 20
+    },
+    {
+      "internal_index": 54,
+      "layer": 64,
+      "datatype": 20
+    }
+  ],
+  "synapse_constraint": "P_SYN_W0840_L0500 is one W=0.84um L=0.50um PMOS. Weight 2 uses two identical instances in parallel. Weight 3 uses three identical instances."
+}

@@ -1,0 +1,77 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "step": "40A",
+  "artifact": "full_neuron_lvs_derivative",
+  "input": {
+    "physical_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.gds",
+    "top": "NEUROLIF_FULL_NEURON_FINAL_ROUTED_V1",
+    "sha256": "74fcc1478c50e2fd590d333e576c99fd1fec03d72c43f3679c15fd50e8d9a6de",
+    "final_drc": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1_drc.lyrdb",
+    "connectivity_audit": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_connectivity_audit_v1.json"
+  },
+  "output": {
+    "lvs_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_lvs_v1.gds",
+    "lvs_oas": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_lvs_v1.oas",
+    "top": "NEUROLIF_FULL_NEURON_LVS_V1",
+    "reference_spice": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_lvs_reference_v1.spice"
+  },
+  "labels": {
+    "VDD": [
+      16.15,
+      15.0
+    ],
+    "VSS": [
+      20.15,
+      7.5
+    ],
+    "VBIAS": [
+      3.55,
+      7.635
+    ],
+    "GATE_W0": [
+      6.55,
+      2.135
+    ],
+    "GATE_W1": [
+      0.55,
+      2.135
+    ],
+    "VLEAK": [
+      32.8,
+      6.635
+    ],
+    "VMEM": [
+      33.45,
+      7.21
+    ],
+    "SPIKE": [
+      28.6,
+      7.5
+    ]
+  },
+  "expected_extraction": {
+    "mos_total": 17,
+    "pfet": 8,
+    "nfet": 9,
+    "physical_cmem": false
+  },
+  "checks": {
+    "step39a_pass": true,
+    "step39a_hash_match": true,
+    "label_set": true,
+    "all_labels_on_m1": true,
+    "label_count": true,
+    "reference_exists": true,
+    "mos_count": true,
+    "pfet_count": true,
+    "nfet_count": true,
+    "subckt": true,
+    "ends": true,
+    "gds_write": true,
+    "oas_write": true,
+    "readback": true,
+    "label_readback": true,
+    "physical_geometry_unchanged": true,
+    "input_gds_unchanged": true
+  }
+}

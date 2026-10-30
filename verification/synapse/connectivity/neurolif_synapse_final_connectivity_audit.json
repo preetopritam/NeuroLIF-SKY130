@@ -1,0 +1,276 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "step": "26A",
+  "audit": "final_connectivity_topology",
+  "input_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_vss_v1.gds",
+  "top_cell": "NEUROLIF_WEIGHTED_SYNAPSE_VSS_V1",
+  "drc_status": "Step 25B CLEAN, 0 violations",
+  "expected_logical_nets": [
+    "VDD",
+    "VBIAS",
+    "P_U1A_TO_SW1A",
+    "P_U0_TO_SW0",
+    "P_U1B_TO_SW1B",
+    "VMEM",
+    "GATE_W0",
+    "GATE_W1",
+    "VSS"
+  ],
+  "actual_conductor_root_count": 9,
+  "expected_conductor_root_count": 9,
+  "logical_nets": {
+    "VDD": {
+      "roots": [
+        20
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "VDD_RAIL",
+          "layer": "M1",
+          "root": 20
+        },
+        {
+          "name": "N_TAP_VDD",
+          "layer": "M1",
+          "root": 20
+        },
+        {
+          "name": "P_U1A_SOURCE",
+          "layer": "M1",
+          "root": 20
+        },
+        {
+          "name": "P_REF_SOURCE",
+          "layer": "M1",
+          "root": 20
+        },
+        {
+          "name": "P_U0_SOURCE",
+          "layer": "M1",
+          "root": 20
+        },
+        {
+          "name": "P_U1B_SOURCE",
+          "layer": "M1",
+          "root": 20
+        }
+      ]
+    },
+    "VBIAS": {
+      "roots": [
+        13
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "VBIAS_BUS",
+          "layer": "M1",
+          "root": 13
+        },
+        {
+          "name": "P_REF_DRAIN",
+          "layer": "M1",
+          "root": 13
+        },
+        {
+          "name": "P_REF_GATE",
+          "layer": "M1",
+          "root": 13
+        },
+        {
+          "name": "P_U1A_GATE",
+          "layer": "M1",
+          "root": 13
+        },
+        {
+          "name": "P_U0_GATE",
+          "layer": "M1",
+          "root": 13
+        },
+        {
+          "name": "P_U1B_GATE",
+          "layer": "M1",
+          "root": 13
+        }
+      ]
+    },
+    "P_U1A_TO_SW1A": {
+      "roots": [
+        4
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "P_U1A_DRAIN",
+          "layer": "M1",
+          "root": 4
+        },
+        {
+          "name": "SW1A_RIGHT_DIFF",
+          "layer": "M1",
+          "root": 4
+        },
+        {
+          "name": "U1A_M2_MID",
+          "layer": "M2",
+          "root": 4
+        }
+      ]
+    },
+    "P_U0_TO_SW0": {
+      "roots": [
+        6
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "P_U0_DRAIN",
+          "layer": "M1",
+          "root": 6
+        },
+        {
+          "name": "SW0_RIGHT_DIFF",
+          "layer": "M1",
+          "root": 6
+        },
+        {
+          "name": "U0_M2_MID",
+          "layer": "M2",
+          "root": 6
+        }
+      ]
+    },
+    "P_U1B_TO_SW1B": {
+      "roots": [
+        8
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "P_U1B_DRAIN",
+          "layer": "M1",
+          "root": 8
+        },
+        {
+          "name": "SW1B_RIGHT_DIFF",
+          "layer": "M1",
+          "root": 8
+        },
+        {
+          "name": "U1B_M2_MID",
+          "layer": "M2",
+          "root": 8
+        }
+      ]
+    },
+    "VMEM": {
+      "roots": [
+        3
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "VMEM_BUS",
+          "layer": "M2",
+          "root": 3
+        },
+        {
+          "name": "SW1A_LEFT_DIFF",
+          "layer": "M1",
+          "root": 3
+        },
+        {
+          "name": "SW0_LEFT_DIFF",
+          "layer": "M1",
+          "root": 3
+        },
+        {
+          "name": "SW1B_LEFT_DIFF",
+          "layer": "M1",
+          "root": 3
+        }
+      ]
+    },
+    "GATE_W0": {
+      "roots": [
+        1
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "GATE_W0_BUS",
+          "layer": "M1",
+          "root": 1
+        },
+        {
+          "name": "SW0_GATE",
+          "layer": "M1",
+          "root": 1
+        }
+      ]
+    },
+    "GATE_W1": {
+      "roots": [
+        0
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "GATE_W1_BUS",
+          "layer": "M1",
+          "root": 0
+        },
+        {
+          "name": "SW1A_GATE",
+          "layer": "M1",
+          "root": 0
+        },
+        {
+          "name": "SW1B_GATE",
+          "layer": "M1",
+          "root": 0
+        }
+      ]
+    },
+    "VSS": {
+      "roots": [
+        9
+      ],
+      "connected": true,
+      "probes": [
+        {
+          "name": "VSS_RAIL",
+          "layer": "M1",
+          "root": 9
+        },
+        {
+          "name": "P_TAP_VSS",
+          "layer": "M1",
+          "root": 9
+        }
+      ]
+    }
+  },
+  "shorted_groups": {},
+  "unaccounted_roots": [],
+  "body": {
+    "pmos_common_nwell": true,
+    "nmos_outside_nwell": true,
+    "body_tap_types": true
+  },
+  "checks": {
+    "layers": true,
+    "via_connectivity": true,
+    "mos_gate_internal_ties": true,
+    "probe_resolution": true,
+    "net_internal_connectivity": true,
+    "no_cross_net_shorts": true,
+    "conductor_net_count": true,
+    "all_roots_accounted": true,
+    "pmos_common_nwell": true,
+    "nmos_outside_nwell": true,
+    "body_tap_types": true
+  },
+  "STEP26A_PASS": true
+}

@@ -1,0 +1,65 @@
+* Extracted by KLayout with SKY130 LVS runset on : 30/10/2026 21:24
+
+* cell NEUROLIF_FULL_NEURON_LVS_V1
+* pin GATE_W0
+* pin GATE_W1
+* pin SPIKE
+* pin VBIAS
+* pin VDD
+* pin VLEAK
+* pin VMEM
+* pin VSS
+.SUBCKT NEUROLIF_FULL_NEURON_LVS_V1 GATE_W0 GATE_W1 SPIKE VBIAS VDD VLEAK VMEM
++ VSS
+* device instance $1 r0 *1 36.375,7.6 sky130_fd_pr__nfet_01v8
+M$1 VSS SPIKE VMEM VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1.2 AS=0.36 AD=0.36
++ PS=3 PD=3
+* device instance $2 r0 *1 32.8,7.21 sky130_fd_pr__nfet_01v8
+M$2 VSS VLEAK VMEM VSS sky130_fd_pr__nfet_01v8 L=1 W=0.42 AS=0.126 AD=0.126
++ PS=1.44 PD=1.44
+* device instance $3 r0 *1 24.45,7.21 sky130_fd_pr__nfet_01v8
+M$3 \$I2 \$I1 VDD VSS sky130_fd_pr__nfet_01v8 L=0.3 W=0.42 AS=0.126 AD=0.126
++ PS=1.44 PD=1.44
+* device instance $4 r0 *1 24.45,14.21 sky130_fd_pr__pfet_01v8
+M$4 \$I3 \$I1 VSS VDD sky130_fd_pr__pfet_01v8 L=0.3 W=0.42 AS=0.126 AD=0.126
++ PS=1.44 PD=1.44
+* device instance $5 r0 *1 16.375,15 sky130_fd_pr__pfet_01v8
+M$5 VDD VMEM \$I3 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=2 AS=0.6 AD=0.6 PS=4.6
++ PD=4.6
+* device instance $6 r0 *1 28.375,15 sky130_fd_pr__pfet_01v8
+M$6 VDD \$I1 SPIKE VDD sky130_fd_pr__pfet_01v8 L=0.15 W=2 AS=0.6 AD=0.6 PS=4.6
++ PD=4.6
+* device instance $7 r0 *1 20.375,15 sky130_fd_pr__pfet_01v8
+M$7 \$I3 VMEM \$I1 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=2 AS=0.6 AD=0.6 PS=4.6
++ PD=4.6
+* device instance $8 r0 *1 16.375,7.5 sky130_fd_pr__nfet_01v8
+M$8 \$I2 VMEM \$I1 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 AS=0.3 AD=0.3 PS=2.6
++ PD=2.6
+* device instance $9 r0 *1 20.375,7.5 sky130_fd_pr__nfet_01v8
+M$9 VSS VMEM \$I2 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 AS=0.3 AD=0.3 PS=2.6
++ PD=2.6
+* device instance $10 r0 *1 28.375,7.5 sky130_fd_pr__nfet_01v8
+M$10 VSS \$I1 SPIKE VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 AS=0.3 AD=0.3 PS=2.6
++ PD=2.6
+* device instance $11 r0 *1 0.55,3 sky130_fd_pr__nfet_01v8
+M$11 VMEM GATE_W1 \$I4 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 AS=0.3 AD=0.3
++ PS=2.6 PD=2.6
+* device instance $12 r0 *1 6.55,3 sky130_fd_pr__nfet_01v8
+M$12 VMEM GATE_W0 \$I5 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 AS=0.3 AD=0.3
++ PS=2.6 PD=2.6
+* device instance $13 r0 *1 9.55,3 sky130_fd_pr__nfet_01v8
+M$13 VMEM GATE_W1 \$I6 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 AS=0.3 AD=0.3
++ PS=2.6 PD=2.6
+* device instance $14 r0 *1 0.55,8.42 sky130_fd_pr__pfet_01v8
+M$14 VDD VBIAS \$I4 VDD sky130_fd_pr__pfet_01v8 L=0.5 W=0.84 AS=0.252 AD=0.252
++ PS=2.28 PD=2.28
+* device instance $15 r0 *1 9.55,8.42 sky130_fd_pr__pfet_01v8
+M$15 VDD VBIAS \$I6 VDD sky130_fd_pr__pfet_01v8 L=0.5 W=0.84 AS=0.252 AD=0.252
++ PS=2.28 PD=2.28
+* device instance $16 r0 *1 6.55,8.42 sky130_fd_pr__pfet_01v8
+M$16 VDD VBIAS \$I5 VDD sky130_fd_pr__pfet_01v8 L=0.5 W=0.84 AS=0.252 AD=0.252
++ PS=2.28 PD=2.28
+* device instance $17 r0 *1 3.55,8.42 sky130_fd_pr__pfet_01v8
+M$17 VDD VBIAS VBIAS VDD sky130_fd_pr__pfet_01v8 L=0.5 W=0.84 AS=0.252 AD=0.252
++ PS=2.28 PD=2.28
+.ENDS NEUROLIF_FULL_NEURON_LVS_V1

@@ -1,0 +1,74 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "validation_stage": "final_post_patch_nominal",
+  "corner": "tt",
+  "vdd_V": 1.8,
+  "temperature_C": 27.0,
+  "transient": {
+    "tstep_s": 1e-08,
+    "tstop_s": 0.0004,
+    "tmax_s": 1e-09,
+    "ngspice_command": "tran 10n 0.0004 0 1n"
+  },
+  "schmitt": {
+    "vth_up_V": 1.023948,
+    "vth_down_V": 0.824096,
+    "hysteresis_V": 0.199852,
+    "hysteresis_mV": 199.852
+  },
+  "weights": {
+    "00": {
+      "spike_count": 0,
+      "firing_rate_Hz": 0.0,
+      "energy_total_J": 7.224655e-11,
+      "energy_per_spike_J": null,
+      "vmem_min_V": 1e-06,
+      "vmem_max_V": 0.2,
+      "spike_min_V": 2.140502e-07,
+      "spike_max_V": 2.148262e-07,
+      "spike_fraction_VDD": 1.193479e-07
+    },
+    "01": {
+      "spike_count": 16,
+      "firing_rate_Hz": 42105.263158,
+      "energy_total_J": 1.751039e-08,
+      "energy_per_spike_J": 1.094399e-09,
+      "vmem_min_V": 0.137195,
+      "vmem_max_V": 1.024103,
+      "spike_min_V": -0.01480653,
+      "spike_max_V": 1.822319,
+      "spike_fraction_VDD": 1.0124
+    },
+    "10": {
+      "spike_count": 39,
+      "firing_rate_Hz": 102631.578947,
+      "energy_total_J": 1.908601e-08,
+      "energy_per_spike_J": 4.89385e-10,
+      "vmem_min_V": 0.137195,
+      "vmem_max_V": 1.024284,
+      "spike_min_V": -0.01796859,
+      "spike_max_V": 1.832049,
+      "spike_fraction_VDD": 1.017805
+    },
+    "11": {
+      "spike_count": 65,
+      "firing_rate_Hz": 171052.631579,
+      "energy_total_J": 2.025317e-08,
+      "energy_per_spike_J": 3.115872e-10,
+      "vmem_min_V": 0.137195,
+      "vmem_max_V": 1.024433,
+      "spike_min_V": -0.01765562,
+      "spike_max_V": 1.832463,
+      "spike_fraction_VDD": 1.018035
+    }
+  },
+  "checks": {
+    "weight_00_no_fire": true,
+    "weight_01_fires": true,
+    "weight_10_fires": true,
+    "weight_11_fires": true,
+    "nondecreasing_firing_response": true,
+    "weight_11_valid_spike": true
+  },
+  "POST_PATCH_NOMINAL_PASS": true
+}

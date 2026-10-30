@@ -1,0 +1,73 @@
+# ============================================================
+# NeuroLIF-SKY130
+# Public repository ignore rules
+# ============================================================
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+
+# Virtual environments
+.venv/
+.venv_sky130/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary / scratch files
+*.tmp
+*.bak
+*.lock
+*.temp
+temp/
+tmp/
+scratch/
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+
+# Local development archives / backups
+archive/
+archive_private/
+backup/
+backups/
+
+# Local PDK / tool installations
+pdk/
+sky130A/
+Efabless_sky130/
+
+# Local KLayout configuration/session material
+*.lay
+*.lay.xml
+
+# Local development logs outside the curated verification tree
+logs/
+
+# Do NOT ignore:
+#   layout/
+#   verification/
+#   results/
+#   figures/
+#   notebooks/
+#
+# These contain intentional public research artifacts,
+# including GDS/OASIS, DRC/LVS reports and validation data.

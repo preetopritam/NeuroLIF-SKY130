@@ -1,0 +1,50 @@
+{
+  "project": "NeuroLIF-SKY130",
+  "block": "corrected_weighted_synapse",
+  "verification_revision": "v1",
+  "physical": {
+    "frozen_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_vss_v1.gds",
+    "frozen_gds_sha256": "491a75596772ca659f88b5a22ca99f323cdd230a0cfa813ba65de2ab1f7a5fda",
+    "lvs_derivative_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_lvs_v1.gds",
+    "lvs_derivative_sha256": "d4c9e3066a81ad676ff6891e04c18787f741e88b200372d5d1f7f8ac691e172b",
+    "drc": {
+      "status": "PASS",
+      "violations": 0,
+      "step": "25B"
+    }
+  },
+  "connectivity_audit": {
+    "step": "26A",
+    "status": "PASS",
+    "intended_nets": 9,
+    "conductor_roots": 9,
+    "cross_net_shorts": 0
+  },
+  "lvs": {
+    "status": "PASS",
+    "match_message": true,
+    "mismatch_message": false,
+    "report": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_lvs_v1.lvsdb",
+    "extracted_netlist": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_extracted_v1.cir",
+    "devices": {
+      "total_mos": 7,
+      "pfet_01v8": 4,
+      "nfet_01v8": 3
+    },
+    "external_pins": [
+      "GATE_W0",
+      "GATE_W1",
+      "VBIAS",
+      "VDD",
+      "VMEM",
+      "VSS"
+    ],
+    "bulk_checks": {
+      "pfet_to_vdd": true,
+      "nfet_to_vss": true
+    },
+    "dimensions_ok": true
+  },
+  "final_status": "CLOSED",
+  "STEP28C_PASS": true
+}
