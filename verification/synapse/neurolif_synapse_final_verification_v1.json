@@ -3,9 +3,9 @@
   "block": "corrected_weighted_synapse",
   "verification_revision": "v1",
   "physical": {
-    "frozen_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_vss_v1.gds",
+    "frozen_gds": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_vss_v1.gds",
     "frozen_gds_sha256": "491a75596772ca659f88b5a22ca99f323cdd230a0cfa813ba65de2ab1f7a5fda",
-    "lvs_derivative_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_lvs_v1.gds",
+    "lvs_derivative_gds": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_lvs_v1.gds",
     "lvs_derivative_sha256": "d4c9e3066a81ad676ff6891e04c18787f741e88b200372d5d1f7f8ac691e172b",
     "drc": {
       "status": "PASS",
@@ -24,8 +24,8 @@
     "status": "PASS",
     "match_message": true,
     "mismatch_message": false,
-    "report": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_lvs_v1.lvsdb",
-    "extracted_netlist": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_extracted_v1.cir",
+    "report": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_lvs_v1.lvsdb",
+    "extracted_netlist": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_extracted_v1.cir",
     "devices": {
       "total_mos": 7,
       "pfet_01v8": 4,
