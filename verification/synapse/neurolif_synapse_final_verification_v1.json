@@ -24,8 +24,8 @@
     "status": "PASS",
     "match_message": true,
     "mismatch_message": false,
-    "report": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_lvs_v1.lvsdb",
-    "extracted_netlist": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_extracted_v1.cir",
+    "report": "<REPO_ROOT>\\verification\\synapse\\lvs\\neurolif_synapse_lvs_v1.lvsdb",
+    "extracted_netlist": "<REPO_ROOT>\\verification\\synapse\\lvs\\neurolif_synapse_extracted_v1.cir",
     "devices": {
       "total_mos": 7,
       "pfet_01v8": 4,
