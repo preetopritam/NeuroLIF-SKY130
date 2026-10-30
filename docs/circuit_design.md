@@ -143,8 +143,8 @@ L = 0.30 µm
 The final simulated threshold values are:
 
 ```text
-VTH_UP    = 1.023948 V
-VTH_DOWN  = 0.824096 V
+VTH_UP     = 1.023948 V
+VTH_DOWN   = 0.824096 V
 Hysteresis = 199.852 mV
 ```
 
@@ -192,7 +192,7 @@ The final post-patch nominal simulation produced:
 | `10` | 39 | 102.6 kHz |
 | `11` | 65 | 171.1 kHz |
 
-The response is monotonic with the number of active synaptic unit cells.
+Under nominal conditions, the firing response is monotonic with the number of active synaptic unit cells.
 
 ## Robustness Validation
 
@@ -201,16 +201,18 @@ Before physical implementation, the transistor-level circuit passed:
 ```text
 Post-patch nominal validation        PASS
 Functional numerical convergence    PASS
-27-point PVT sweep                   27 / 27 passed defined acceptance criteria
+27-point PVT sweep                   27 / 27 PASS
 Deterministic variation sweep        13 / 13 PASS
 ```
 
-The PVT acceptance criteria were:
+The PVT acceptance criterion was defined per operating point as follows:
 
-- simulation completes successfully
+- the simulation completes successfully
 - weight `00` remains silent
-- weight `11` produces valid spiking
-- response remains nondecreasing with increasing synaptic weight
+- weight `11` produces at least one valid output spike
+- the firing response is nondecreasing with increasing synaptic weight, i.e. `00 ≤ 01 ≤ 10 ≤ 11`
+
+Therefore, `27/27 PASS` means that all 27 PVT operating points satisfied these defined acceptance criteria. It does not imply that intermediate weights `01` and `10` produced spikes at every PVT corner.
 
 The final robustness status was:
 
