@@ -60,17 +60,25 @@ INPUT_GDS = (
 )
 
 REFERENCE_SPICE = (
-    NEURON_DIR
+    PROJECT_ROOT
+    / "circuit"
+    / "reference"
     / "neurolif_full_neuron_reference_v1.spice"
 )
 
 FINAL_DRC_REPORT = (
-    NEURON_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "neuron"
+    / "drc"
     / "neurolif_full_neuron_final_routed_v1_drc.lyrdb"
 )
 
 OUTPUT_JSON = (
-    NEURON_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "neuron"
+    / "connectivity"
     / "neurolif_full_neuron_final_connectivity_audit_v1.json"
 )
 
