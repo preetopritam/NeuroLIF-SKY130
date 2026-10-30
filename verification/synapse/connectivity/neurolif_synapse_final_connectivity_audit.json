@@ -2,7 +2,7 @@
   "project": "NeuroLIF-SKY130",
   "step": "26A",
   "audit": "final_connectivity_topology",
-  "input_gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\synapse\\neurolif_synapse_vss_v1.gds",
+  "input_gds": "<REPO_ROOT>\\layout\\synapse\\neurolif_synapse_vss_v1.gds",
   "top_cell": "NEUROLIF_WEIGHTED_SYNAPSE_VSS_V1",
   "drc_status": "Step 25B CLEAN, 0 violations",
   "expected_logical_nets": [
