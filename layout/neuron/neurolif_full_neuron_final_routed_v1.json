@@ -5,13 +5,13 @@
   "version": "v1",
   "status": "FINAL_ROUTING_CONSTRUCTION_PASS_PENDING_DRC",
   "input": {
-    "gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_spike_v1.gds",
+    "gds": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_spike_v1.gds",
     "top": "NEUROLIF_FULL_NEURON_SPIKE_V1",
     "sha256": "5cd354c212bd7d76421877d996e3b56a98e310743f11981e2eab509439c9f684"
   },
   "output": {
-    "gds": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.gds",
-    "oas": "C:\\Users\\preet\\NeuroLIF-SKY130\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.oas",
+    "gds": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.gds",
+    "oas": "<REPO_ROOT>\\layout\\neuron\\neurolif_full_neuron_final_routed_v1.oas",
     "top": "NEUROLIF_FULL_NEURON_FINAL_ROUTED_V1"
   },
   "connection": {
