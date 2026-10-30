@@ -6,7 +6,9 @@ This document describes the environment, repository structure and public workflo
 
 The repository does not bundle the SKY130 PDK, KLayout installation, Python virtual environment or other third-party dependencies. These must be installed separately.
 
-The current public repository supports direct reproduction of the final DRC and LVS checks. The complete historical physical-construction chain is also preserved, but some older verification/construction scripts may require path normalization before they can be executed end-to-end from a fresh clone.
+The curated public repository provides direct reproduction runners for the final DRC and LVS checks and repository-normalized paths for the final full-neuron connectivity audit.
+
+The historical physical-construction chain is also preserved. However, some intermediate construction artifacts are intentionally not included in the curated release, so the repository should not be interpreted as a complete fresh-clone replay of every historical routing stage.
 
 ## Frozen Tool Versions
 
@@ -50,7 +52,7 @@ The transistor-level simulation workflow used the pinned SKY130 PDK revision:
 44a43c23c81b45b8e774ae7a84899a5a778b6b0b
 ```
 
-This revision is recorded to improve reproducibility of the transistor-level simulation behavior.
+This revision is recorded to improve reproducibility of transistor-level simulation behavior.
 
 The repository does not redistribute the PDK.
 
@@ -102,7 +104,9 @@ Canonical SHA-256:
 74fcc1478c50e2fd590d333e576c99fd1fec03d72c43f3679c15fd50e8d9a6de
 ```
 
-This file is the canonical physical artifact and should not be replaced by the LVS-labelled derivative.
+This file is the canonical physical artifact.
+
+It should not be replaced by the LVS-labelled derivative.
 
 ## LVS Derivative
 
@@ -118,25 +122,35 @@ Top cell:
 NEUROLIF_FULL_NEURON_LVS_V1
 ```
 
-This file adds the top-level labels required for extraction and LVS.
+This derivative adds the top-level labels required for extraction and LVS.
 
 It does not replace the canonical final routed GDS.
 
 ## Path Handling
 
-Public scripts should use repository-relative paths for project artifacts rather than machine-specific absolute paths.
+Public project files are resolved using repository-relative paths rather than machine-specific absolute paths.
 
 A typical pattern is:
 
 ```python
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-LAYOUT_DIR = ROOT / "layout" / "neuron"
-VERIFY_DIR = ROOT / "verification" / "neuron"
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+LAYOUT_DIR = (
+    PROJECT_ROOT
+    / "layout"
+    / "neuron"
+)
+
+VERIFY_DIR = (
+    PROJECT_ROOT
+    / "verification"
+    / "neuron"
+)
 ```
 
-Tool installations may be located using the current user's home directory where appropriate:
+External tool installations may be located using the current user's home directory where appropriate:
 
 ```python
 from pathlib import Path
@@ -152,6 +166,29 @@ SKY130_ROOT = (
 ```
 
 No public script should require a hard-coded personal username.
+
+## Public Path Sanitization
+
+Machine-specific absolute filesystem paths appearing in preserved logs and report databases have been replaced with neutral placeholders where applicable.
+
+Examples include:
+
+```text
+<REPO_ROOT>
+<DEV_ROOT>
+<USER_HOME>
+```
+
+This sanitization affects only path metadata.
+
+It does not change:
+
+- physical geometry
+- device extraction
+- DRC results
+- LVS results
+- connectivity results
+- simulation results
 
 ## Canonical MOS Primitive Library
 
@@ -180,7 +217,7 @@ nf = 1
 interdig = 0
 ```
 
-The public primitive-generation script is located under:
+The public primitive-generation scripts are stored under:
 
 ```text
 scripts/physical/primitives/
@@ -208,9 +245,21 @@ layout/synapse/neurolif_synapse_vss_v1.gds
 
 The final synapse was independently verified before integration into the full neuron.
 
+Its preserved verification evidence is stored under:
+
+```text
+verification/synapse/
+```
+
+The public synapse verification scripts use the curated locations for the reference schematic, connectivity record and LVS evidence.
+
+Some early synapse construction manifests are historical intermediate artifacts and are not included in the curated public release.
+
+Therefore, the weighted-synapse section should be interpreted as a preserved construction lineage plus frozen final evidence rather than a guaranteed replay of every historical intermediate stage from a clean clone.
+
 ## Full-Neuron Construction
 
-The public full-neuron construction sequence preserves the successful physical-design path, including:
+The public full-neuron construction sequence preserves the successful physical-design path:
 
 ```text
 build_full_neuron_reference_v1.py
@@ -228,9 +277,39 @@ route_full_neuron_spike_v1.py
 route_full_neuron_reset_gate_v1.py
 ```
 
+The public scripts use the curated repository location for the full-neuron reference schematic:
+
+```text
+circuit/reference/neurolif_full_neuron_reference_v1.spice
+```
+
+and the final synapse verification record:
+
+```text
+verification/synapse/neurolif_synapse_final_verification_v1.json
+```
+
 `route_full_neuron_vdd_v2.py` is retained because the successful VDD V3 stage depends on its generated intermediate artifact.
 
 Rejected debugging routes are not part of the canonical final implementation.
+
+## Historical Intermediate Artifacts
+
+The repository intentionally focuses on final physical artifacts, verification evidence and the successful design lineage rather than every temporary development file.
+
+For example, the final-routing manifest records the historical input:
+
+```text
+layout/neuron/neurolif_full_neuron_spike_v1.gds
+```
+
+That intermediate GDS is not included in the curated public release.
+
+This is intentional historical metadata and should not be replaced with a different existing path merely to make every manifest reference resolve.
+
+Similarly, some early construction manifests required by individual historical routing stages are not distributed.
+
+These omissions affect complete historical workflow replay, not the validity of the final frozen design or its preserved verification evidence.
 
 ## GDS Serialization
 
@@ -276,7 +355,7 @@ layout/neuron/neurolif_full_neuron_final_routed_v1.gds
 
 using the official SKY130 KLayout DRC deck.
 
-Expected result:
+Expected validated result:
 
 ```text
 KLayout return code: 0
@@ -320,7 +399,7 @@ Reference schematic:
 circuit/lvs/neurolif_full_neuron_lvs_reference_v1.spice
 ```
 
-Expected result:
+Expected validated result:
 
 ```text
 KLayout return code: 0
@@ -346,10 +425,19 @@ The preserved original LVS evidence remains unchanged.
 
 ## Connectivity Audit
 
-The independent geometry-based connectivity audit is implemented in:
+The independent geometry-based full-neuron connectivity audit is implemented in:
 
 ```text
 scripts/verification/neuron/audit_full_neuron_connectivity_v1.py
+```
+
+The public script uses curated repository paths for:
+
+```text
+layout/neuron/
+circuit/reference/
+verification/neuron/drc/
+verification/neuron/connectivity/
 ```
 
 The final preserved audit record is:
@@ -374,24 +462,36 @@ Leak path verified
 Body/well connectivity verified
 ```
 
-### Current Reproduction Scope
+The preserved JSON record remains authoritative for the frozen final design.
 
-The preserved audit record is authoritative for the frozen final design.
+## Reproduction Scope
 
-However, the audit script was originally developed against an earlier working-directory organization. Before describing it as a one-command fresh-clone reproduction step, its input paths should be normalized to the curated public directory structure.
+The repository distinguishes between final verification reproduction and complete historical construction replay.
 
-In particular, dependencies should reference the current public locations such as:
+### Final verification workflows
+
+The following public workflows use the curated repository structure:
 
 ```text
-circuit/reference/
-verification/neuron/drc/
-verification/neuron/connectivity/
-layout/neuron/
+public analysis notebooks
+final standalone DRC runner
+final standalone LVS runner
+full-neuron connectivity audit
 ```
 
-rather than expecting verification artifacts to remain inside `layout/neuron/`.
+The DRC and LVS standalone runners have preserved successful reproduction evidence in the repository.
 
-The same rule applies to any older helper script that still assumes the original development directory layout.
+The connectivity audit script has been normalized to the curated repository paths and operates on the preserved final design and verification inputs.
+
+### Historical construction workflows
+
+The construction scripts preserve the successful development sequence and now use curated paths for shared public references where applicable.
+
+However, some historical intermediate GDS files and manifests are intentionally absent from the curated release.
+
+Therefore, the complete physical-construction chain should not be advertised as a guaranteed one-command fresh-clone reconstruction of every historical stage.
+
+This is an artifact-retention boundary rather than a path-normalization defect.
 
 ## Public Simulation Results
 
@@ -407,7 +507,7 @@ results/pvt/pvt_27point_summary.csv
 results/variation/variation_13case_summary.csv
 ```
 
-These contain the final validated public results rather than the complete development/debug history.
+These contain the final validated public results rather than the complete development and debugging history.
 
 ## Public Notebooks
 
@@ -430,8 +530,8 @@ They intentionally exclude obsolete debugging experiments from the original deve
 Representative final nominal values include:
 
 ```text
-VTH_UP    = 1.023948 V
-VTH_DOWN  = 0.824096 V
+VTH_UP     = 1.023948 V
+VTH_DOWN   = 0.824096 V
 Hysteresis = 199.852 mV
 ```
 
@@ -451,6 +551,15 @@ Corresponding current scaling is approximately:
 11 / 01 ≈ 3
 ```
 
+Representative nominal firing behavior is:
+
+```text
+00   0 spikes    0 Hz
+01  16 spikes   42.1 kHz
+10  39 spikes  102.6 kHz
+11  65 spikes  171.1 kHz
+```
+
 ## Robustness Validation
 
 The final transistor-level validation status is:
@@ -466,16 +575,27 @@ For the PVT sweep, a point is considered passing when:
 
 - the simulation completes successfully
 - weight `00` remains silent
-- weight `11` produces valid spiking
+- weight `11` produces at least one valid spike
 - the response remains nondecreasing with increasing synaptic weight
 
-A passing PVT point therefore does not imply that every nonzero weight necessarily produces spikes at every process, voltage and temperature corner.
+Therefore, `27 / 27 PASS` does not mean that intermediate weights `01` and `10` necessarily produce spikes at every process, voltage and temperature corner.
 
-The deterministic variation sweep is not a Monte Carlo mismatch analysis.
+For example, some valid corners may produce responses such as:
+
+```text
+00 = 0
+01 = 0
+10 = 0
+11 > 0
+```
+
+provided the defined acceptance criteria remain satisfied.
+
+The deterministic 13-case variation sweep is not a Monte Carlo mismatch analysis.
 
 ## Verification Evidence
 
-The repository preserves the following machine-readable verification artifacts:
+The repository preserves machine-readable verification artifacts including:
 
 ```text
 DRC report databases
@@ -494,29 +614,48 @@ figures/layout/
 figures/verification/
 ```
 
-Screenshots are supporting presentation material; the machine-readable reports and logs remain the primary verification evidence.
+Screenshots are supporting presentation material.
 
-## Fresh-Clone Reproducibility Status
+The machine-readable reports, logs and records remain the primary verification evidence.
 
-The current curated repository should distinguish between directly reproducible final checks and preserved historical construction scripts.
+## Final Verification Record
 
-### Directly reproducible
-
-The following workflows are intended to run directly from the curated repository structure once the required external tools and PDK are installed:
+The main machine-readable full-neuron verification record is:
 
 ```text
-public analysis notebooks
-final standalone DRC runner
-final standalone LVS runner
+verification/neuron/
+neurolif_full_neuron_final_verification_v1.json
 ```
 
-### Preserved but requiring path normalization
+Its curated artifact references point to the public locations for:
 
-Some older construction and verification-chain scripts were written against the original development directory layout.
+```text
+verification/neuron/drc/
+verification/neuron/connectivity/
+verification/neuron/lvs/
+circuit/lvs/
+layout/neuron/
+```
 
-These should not yet be described as fully fresh-clone executable until their project-file paths are normalized to the curated repository structure.
+The record preserves the final status:
 
-This limitation affects packaging and workflow orchestration, not the validity of the preserved final verification results.
+```text
+MOS total                 17
+PFET                       8
+NFET                       9
+Logical conductor nets    14
+External pins              8
+
+Official SKY130 DRC       PASS
+DRC violations             0
+
+Connectivity audit        PASS
+
+KLayout LVS               PASS
+Netlists match            True
+
+FINAL_VERIFICATION_PASS   True
+```
 
 ## Reproducibility Boundary
 
@@ -530,6 +669,10 @@ Users are responsible for installing and complying with the licenses of:
 - gdsfactory
 - kfactory
 - ngspice and related simulation dependencies
+
+The repository's reproducibility claim covers the preserved final design, public simulation summaries and final verification workflows.
+
+It does not imply that every historical intermediate development artifact is included.
 
 ## Project Scope
 
