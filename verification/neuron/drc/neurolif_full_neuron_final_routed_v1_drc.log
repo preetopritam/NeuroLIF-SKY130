@@ -2492,7 +2492,7 @@ OFFGRID-ANGLES section
 "output" in: sky130A_mr.drc:1607
     Edge pairs: 0 (flat)  0 (hierarchical)
     Elapsed: 0.000s  Memory: 377.00M
-Writing report database: C:/Users/preet/NeuroLIF-SKY130/layout/neuron/neurolif_full_neuron_final_routed_v1_drc.lyrdb ..
+Writing report database: <DEV_ROOT>/layout/neuron/neurolif_full_neuron_final_routed_v1_drc.lyrdb ..
 Total elapsed: 1.168s  Memory: 377.00M
 Args:
 	sram_exclude: false
