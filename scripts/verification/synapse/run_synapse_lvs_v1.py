@@ -51,7 +51,9 @@ LAYOUT_GDS = (
 )
 
 REFERENCE_SPICE = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "circuit"
+    / "reference"
     / "neurolif_synapse_reference_v1.spice"
 )
 
@@ -84,17 +86,26 @@ TOP_CELL = (
 )
 
 LVS_REPORT = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
+    / "lvs"
     / "neurolif_synapse_lvs_v1.lvsdb"
 )
 
 EXTRACTED_NETLIST = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
+    / "lvs"
     / "neurolif_synapse_extracted_v1.cir"
 )
 
 LVS_LOG = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
+    / "lvs"
     / "neurolif_synapse_lvs_v1.log"
 )
 

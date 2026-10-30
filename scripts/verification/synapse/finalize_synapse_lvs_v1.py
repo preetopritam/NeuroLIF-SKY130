@@ -56,32 +56,48 @@ LVS_GDS = (
 )
 
 REFERENCE_SPICE = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "circuit"
+    / "reference"
     / "neurolif_synapse_reference_v1.spice"
 )
 
 EXTRACTED_NETLIST = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
+    / "lvs"
     / "neurolif_synapse_extracted_v1.cir"
 )
 
 LVS_REPORT = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
+    / "lvs"
     / "neurolif_synapse_lvs_v1.lvsdb"
 )
 
 LVS_LOG = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
+    / "lvs"
     / "neurolif_synapse_lvs_v1.log"
 )
 
 CONNECTIVITY_AUDIT = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
+    / "connectivity"
     / "neurolif_synapse_final_connectivity_audit.json"
 )
 
 FINAL_RECORD = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "verification"
+    / "synapse"
     / "neurolif_synapse_final_verification_v1.json"
 )
 

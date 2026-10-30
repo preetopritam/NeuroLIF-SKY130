@@ -67,7 +67,9 @@ OUTPUT_OAS = (
 )
 
 REFERENCE_SPICE = (
-    SYNAPSE_DIR
+    PROJECT_ROOT
+    / "circuit"
+    / "reference"
     / "neurolif_synapse_reference_v1.spice"
 )
 

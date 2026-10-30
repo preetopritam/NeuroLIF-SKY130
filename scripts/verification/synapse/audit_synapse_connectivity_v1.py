@@ -95,8 +95,9 @@ VSS_MANIFEST = (
 
 OUTPUT_AUDIT = (
     PROJECT_ROOT
-    / "layout"
+    / "verification"
     / "synapse"
+    / "connectivity"
     / "neurolif_synapse_final_connectivity_audit.json"
 )
 
