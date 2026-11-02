@@ -1,44 +1,66 @@
+<div align="center">
+
 # NeuroLIF-SKY130
 
-**Transistor-Level Leaky Integrate-and-Fire Neuron with Weighted Synaptic Input and Physical Verification in SKY130**
+### Transistor-Level Leaky Integrate-and-Fire Neuron  
+### Weighted Synaptic Input · SKY130 Physical Design · DRC · Connectivity Audit · LVS
 
-NeuroLIF-SKY130 is a pre-silicon neuromorphic IC-design project implementing a transistor-level leaky integrate-and-fire (LIF) neuron using SKY130 1.8 V CMOS devices.
+[![Technology](https://img.shields.io/badge/PDK-SKY130-1565C0)](#physical-implementation)
+[![KLayout](https://img.shields.io/badge/KLayout-0.30.12-455A64)](#physical-implementation)
+[![DRC](https://img.shields.io/badge/DRC-0%20violations-2E7D32)](#physical-verification)
+[![LVS](https://img.shields.io/badge/LVS-Netlists%20Match-2E7D32)](#physical-verification)
+[![MOS](https://img.shields.io/badge/MOS-17%2F17-00695C)](#highlights)
+[![License](https://img.shields.io/badge/License-MIT-37474F)](#license)
 
-The project covers the complete path from transistor-level circuit development and weighted-synapse characterization to physical layout, design-rule checking, independent geometry-based connectivity verification and layout-versus-schematic comparison.
+**Pre-silicon educational neuromorphic IC design using the open SKY130 PDK**
 
-The final released core contains **17 MOS transistors**, exposes **8 external pins** and has been closed with **zero SKY130 DRC violations** and a successful **KLayout LVS match**.
+</div>
 
-![Final routed NeuroLIF-SKY130 neuron](figures/layout/klayout_full_neuron_final.png)
+---
+
+NeuroLIF-SKY130 implements a transistor-level **leaky integrate-and-fire (LIF) neuron** using SKY130 1.8 V CMOS devices.
+
+The project covers the full design path from transistor-level circuit development and weighted-synapse characterization to physical layout, official SKY130 DRC, independent geometry-based connectivity verification and KLayout LVS.
+
+The released core contains **17 MOS transistors**, exposes **8 external pins**, passes the official SKY130 DRC with **0 violations**, and matches the intended 17-MOS reference schematic under LVS.
+
+<p align="center">
+  <img src="figures/layout/klayout_full_neuron_final.png" alt="Final routed NeuroLIF-SKY130 neuron" width="900">
+</p>
+
+<p align="center">
+  <em>Final routed NeuroLIF-SKY130 physical core in KLayout.</em>
+</p>
 
 ---
 
 ## Highlights
 
-| Item | Result |
-|---|---|
+| Metric | Result |
+|---|---:|
 | Technology | SKY130 1.8 V CMOS |
 | Neuron model | Leaky integrate-and-fire |
-| MOS devices | 17 |
-| PFET / NFET | 8 / 9 |
-| External pins | 8 |
-| Logical conductor nets | 14 |
-| Weighted synapse | 2-bit, 0/1/2/3 unit-current encoding |
-| Membrane capacitor | External ideal 5 pF |
-| Nominal Schmitt hysteresis | ~199.9 mV |
-| PVT validation | 27 / 27 defined operating points passed |
-| Deterministic variation | 13 / 13 cases passed |
-| Official SKY130 DRC | PASS, 0 violations |
-| Connectivity/topology audit | PASS |
-| Cross-net shorts | None detected |
-| Floating conductor nets | None detected |
-| KLayout LVS | PASS, netlists match |
-| Extracted MOS count | 17 / 17 |
+| MOS devices | **17** |
+| PFET / NFET | **8 / 9** |
+| External pins | **8** |
+| Logical conductor nets | **14** |
+| Synaptic encoding | **0× / 1× / 2× / 3×** |
+| Membrane capacitor | External ideal **5 pF** |
+| Nominal Schmitt hysteresis | **199.852 mV** |
+| PVT validation | **27 / 27** defined operating points passed |
+| Deterministic variation | **13 / 13** cases passed |
+| Official SKY130 DRC | **PASS — 0 violations** |
+| Connectivity/topology audit | **PASS** |
+| Cross-net shorts | **None detected** |
+| Floating conductor nets | **None detected** |
+| KLayout LVS | **PASS — Netlists match** |
+| Extracted MOS count | **17 / 17** |
 
 ---
 
 ## Architecture
 
-The final neuron consists of:
+The final signal path is:
 
 ```text
 Reference current
@@ -72,58 +94,48 @@ CMOS output inverter
                    VMEM
 ```
 
-The physical core is composed of:
+### Physical transistor composition
 
-```text
-7-MOS weighted synapse
-1-MOS membrane leak
-6-MOS Schmitt detector
-2-MOS output inverter
-1-MOS reset
---------------------------
-17 MOS total
-```
+| Block | MOS count |
+|---|---:|
+| Weighted synapse | 7 |
+| Membrane leak | 1 |
+| Schmitt detector | 6 |
+| Output inverter | 2 |
+| Reset | 1 |
+| **Total** | **17** |
 
 The membrane capacitor is deliberately external to the physical core.
 
-Nominal simulation uses:
+Nominal transistor-level simulations use:
 
 ```text
 Cmem = 5 pF
 ```
 
-More detail is provided in:
+Detailed architecture and circuit documentation:
 
-```text
-docs/architecture.md
-docs/circuit_design.md
-```
+- [`docs/architecture.md`](docs/architecture.md)
+- [`docs/circuit_design.md`](docs/circuit_design.md)
 
 ---
 
 ## Weighted Electronic Synapse
 
-The final synapse uses three identical PMOS unit-current cells.
+The final 2-bit synapse uses **three identical PMOS unit-current cells**.
 
-Two digital inputs, `GATE_W0` and `GATE_W1`, implement four synaptic states:
+Two digital controls, `GATE_W0` and `GATE_W1`, produce four synaptic states:
 
-| Code | Active unit cells | Relative weight |
-|---|---:|---:|
-| `00` | 0 | 0× |
-| `01` | 1 | 1× |
-| `10` | 2 | 2× |
-| `11` | 3 | 3× |
+| Code | Active unit cells | Logical weight | Nominal delivered current |
+|---|---:|---:|---:|
+| `00` | 0 | 0× | ~0.002 nA |
+| `01` | 1 | 1× | ~103.734 nA |
+| `10` | 2 | 2× | ~207.470 nA |
+| `11` | 3 | 3× | ~311.206 nA |
 
-Nominal delivered currents are:
+> **Note:** `00` denotes the nominal **0× synaptic state**. The transistor-level simulation shows a residual off-state current of approximately **0.002 nA (~2 pA)** rather than mathematically zero current.
 
-| Weight | Current |
-|---|---:|
-| `00` | ~0.002 nA |
-| `01` | ~103.734 nA |
-| `10` | ~207.470 nA |
-| `11` | ~311.206 nA |
-
-The measured ratios are approximately:
+Measured current ratios:
 
 ```text
 10 / 01 = 2.0000
@@ -132,7 +144,7 @@ The measured ratios are approximately:
 
 ### Why identical unit cells?
 
-During characterization, a single PMOS with twice the unit width did not produce twice the unit current under the tested implementation and bias conditions:
+Direct characterization showed that, for the tested SKY130 device configuration and bias conditions, a single PMOS with twice the unit width did not produce twice the unit current:
 
 ```text
 Unit PMOS current       ≈ 103.738 nA
@@ -140,20 +152,28 @@ Single 2×-wide PMOS     ≈ 98.196 nA
 Two identical unit PMOS ≈ 207.476 nA
 ```
 
-The final 2× state therefore uses two identical unit devices in parallel.
+The final 2× state therefore uses **two identical unit PMOS devices in parallel**.
 
-This is an implementation-specific observation. It is not intended as a general claim that MOS current cannot scale with device width.
+This is an implementation-specific result and is not presented as a general statement about MOS current scaling with width.
 
-![Final weighted-synapse layout](figures/layout/klayout_weighted_synapse.png)
+<p align="center">
+  <img src="figures/layout/klayout_weighted_synapse.png" alt="Weighted synapse layout" width="780">
+</p>
 
-### Membrane Dynamics versus Synaptic Weight
+<p align="center">
+  <em>Final routed 7-MOS weighted-synapse block.</em>
+</p>
 
-The transistor-level transient response shows how the synaptic weight changes the membrane-voltage dynamics.
+---
 
-- `00` (0×): no firing; the membrane voltage decays below threshold
-- `01` (1×): lowest nonzero synaptic drive and lowest nonzero firing rate
-- `10` (2×): stronger synaptic drive and higher firing rate
-- `11` (3×): strongest synaptic drive and highest firing rate
+## Membrane Dynamics versus Synaptic Weight
+
+The transistor-level transient response shows how synaptic weight changes the membrane-voltage dynamics:
+
+- `00` — no firing; membrane voltage remains below threshold
+- `01` — lowest nonzero synaptic drive and firing rate
+- `10` — stronger drive and higher firing rate
+- `11` — strongest drive and highest firing rate
 
 The dashed line marks the nominal rising Schmitt threshold:
 
@@ -161,30 +181,39 @@ The dashed line marks the nominal rising Schmitt threshold:
 VTH_UP = 1.023948 V
 ```
 
-The plotted waveforms are the original transistor-level simulation results; the added annotation area does not modify the waveform data.
+<p align="center">
+  <img src="figures/membrane_dynamics_vs_synaptic_weight_exact.png" alt="Membrane dynamics versus synaptic weight" width="900">
+</p>
 
-![Membrane dynamics versus synaptic weight](figures/membrane_dynamics_vs_synaptic_weight_exact.png)
+<p align="center">
+  <em>
+    Original transistor-level VMEM waveforms for the four synaptic-weight states.
+    The waveform data are unchanged; only presentation annotations were added outside the original plot region.
+  </em>
+</p>
 
 ---
 
 ## Membrane, Leak and Threshold Detection
 
-`VMEM` is the neuron state variable.
+`VMEM` is the principal neuron state variable.
 
-Synaptic current charges the external membrane capacitor while an NMOS leak transistor provides a continuously controllable discharge path.
+Synaptic current charges the external membrane capacitor while an NMOS leak transistor provides a controllable discharge path.
 
-Nominal leak-device dimensions:
+### Leak device
 
 ```text
 W = 0.42 µm
 L = 1.00 µm
 ```
 
-The leak strength is controlled externally through `VLEAK`.
+Leak strength is externally controlled through `VLEAK`.
+
+### Schmitt detector
 
 Threshold detection uses a corrected six-transistor CMOS Schmitt topology.
 
-The final simulated switching points are approximately:
+Final transistor-level switching points:
 
 ```text
 VTH_UP     = 1.023948 V
@@ -192,19 +221,19 @@ VTH_DOWN   = 0.824096 V
 Hysteresis = 199.852 mV
 ```
 
-The approximately 200 mV hysteresis window provides distinct rising and falling switching thresholds around the membrane transition.
+The approximately **200 mV hysteresis window** provides distinct rising and falling switching thresholds around the membrane transition.
 
 ---
 
 ## Spike Generation and Reset
 
-The Schmitt stage generates the internal signal:
+The Schmitt detector generates the internal signal:
 
 ```text
 VRAW
 ```
 
-A CMOS inverter converts `VRAW` into the positive-going external signal:
+A CMOS inverter produces the externally available positive-going signal:
 
 ```text
 SPIKE
@@ -216,15 +245,13 @@ The reset transistor is:
 MN_RST VMEM SPIKE VSS VSS
 ```
 
-When `SPIKE` rises, the reset NMOS discharges `VMEM` toward `VSS`.
+When `SPIKE` rises, the reset NMOS discharges `VMEM` toward `VSS`, initiating the next integrate-and-fire cycle.
 
-A dedicated refractory-delay circuit is not included in this revision.
+A dedicated refractory-delay circuit is not included in the current revision.
 
 ---
 
 ## Nominal Functional Response
-
-The final nominal transistor-level simulation produced:
 
 | Weight | Spike count | Firing rate |
 |---|---:|---:|
@@ -233,13 +260,11 @@ The final nominal transistor-level simulation produced:
 | `10` | 39 | 102.6 kHz |
 | `11` | 65 | 171.1 kHz |
 
-Under nominal conditions, the firing response increases monotonically with synaptic weight.
+Under nominal conditions, firing activity increases monotonically with the number of active synaptic unit cells.
 
 ---
 
 ## Robustness Characterization
-
-The frozen transistor-level validation includes:
 
 ```text
 Post-patch nominal validation       PASS
@@ -250,27 +275,30 @@ Deterministic variation cases       13 / 13 PASS
 
 ### PVT acceptance criterion
 
-A PVT operating point is considered passing when:
+Each PVT operating point passes when:
 
-- the simulation completes successfully
-- weight `00` remains silent
-- weight `11` generates at least one valid output spike
-- firing response is nondecreasing with increasing synaptic weight
+1. the simulation completes successfully
+2. weight `00` remains silent
+3. weight `11` generates at least one valid output spike
+4. firing response remains nondecreasing with increasing synaptic weight
 
-Therefore, **27 / 27 PASS does not mean that intermediate weights `01` and `10` necessarily fire at every PVT corner**.
+Therefore:
+
+> **27 / 27 PASS does not imply that intermediate weights `01` and `10` generate spikes at every individual PVT corner.**
 
 The deterministic 13-case variation study is not presented as a Monte Carlo mismatch analysis.
 
-Frozen result summaries are available under:
+### Frozen simulation results
 
 ```text
-results/nominal/
-results/synapse/
-results/pvt/
-results/variation/
+results/
+├── nominal/
+├── synapse/
+├── pvt/
+└── variation/
 ```
 
-Clean result-analysis notebooks are provided under:
+Clean result-analysis notebooks are available under:
 
 ```text
 notebooks/
@@ -278,31 +306,43 @@ notebooks/
 
 ---
 
+# Physical Design
+
 ## Physical Implementation
 
-The physical design was implemented in KLayout using the open SKY130 technology environment.
+The physical implementation was developed in KLayout using the open SKY130 technology environment.
 
-Frozen development environment:
+### Frozen development environment
 
-```text
-KLayout      0.30.12
-Python       3.11.9
-gdsfactory   8.4.0
-kfactory     0.17.8
-```
+| Tool | Version |
+|---|---|
+| KLayout | 0.30.12 |
+| Python | 3.11.9 |
+| gdsfactory | 8.4.0 |
+| kfactory | 0.17.8 |
 
-The physical implementation uses a dedicated seven-device MOS primitive library with explicit single-finger devices:
+The project uses a dedicated seven-device MOS primitive library.
+
+All final MOS primitives use:
 
 ```text
 nf = 1
 interdig = 0
 ```
 
-![SKY130 MOS primitive library](figures/layout/klayout_primitive_library.png)
+<p align="center">
+  <img src="figures/layout/klayout_primitive_library.png" alt="SKY130 MOS primitive library" width="720">
+</p>
 
-The final full-neuron layout is shown below with the relevant KLayout layer view.
+<p align="center">
+  <em>Single-finger SKY130 MOS primitive library used by the physical-design flow.</em>
+</p>
 
-![Final neuron with KLayout layers](figures/layout/klayout_full_neuron_with_layers.png)
+### Final routed core with layer view
+
+<p align="center">
+  <img src="figures/layout/klayout_full_neuron_with_layers.png" alt="Final neuron with KLayout layers" width="900">
+</p>
 
 ### Canonical physical artifact
 
@@ -316,13 +356,13 @@ Top cell:
 NEUROLIF_FULL_NEURON_FINAL_ROUTED_V1
 ```
 
-SHA-256:
+Canonical SHA-256:
 
 ```text
 74fcc1478c50e2fd590d333e576c99fd1fec03d72c43f3679c15fd50e8d9a6de
 ```
 
-The canonical GDS is treated as frozen.
+The canonical physical GDS is treated as frozen.
 
 A separate labelled derivative is used only for LVS extraction:
 
@@ -332,30 +372,40 @@ layout/neuron/neurolif_full_neuron_lvs_v1.gds
 
 ---
 
+# Verification
+
 ## Physical Verification
 
-Physical closure uses three complementary verification mechanisms.
+The final core is closed using three complementary verification mechanisms:
+
+```text
+Official SKY130 DRC
+        +
+Independent geometry/connectivity audit
+        +
+KLayout LVS
+```
 
 ### 1. Official SKY130 DRC
 
-The final routed GDS was checked using the official SKY130 KLayout DRC deck.
-
-Result:
+Final result:
 
 ```text
 PASS
 0 violations
 ```
 
-![Final DRC result](figures/verification/klayout_final_drc_zero.png)
+<p align="center">
+  <img src="figures/verification/klayout_final_drc_zero.png" alt="Final DRC result" width="850">
+</p>
 
-### 2. Independent geometry-based connectivity audit
+### 2. Independent Geometry-Based Connectivity Audit
 
-A separate geometry-level audit checks:
+The audit independently checks:
 
 - 17 expected MOS devices
 - 14 intended logical conductor nets
-- M1/VIA1/M2 connectivity
+- M1 / VIA1 / M2 connectivity
 - weighted-synapse topology
 - Schmitt, buffer, leak and reset topology
 - PMOS NWELL/body connectivity
@@ -368,6 +418,7 @@ Final result:
 ```text
 17 MOS devices           VERIFIED
 14 logical nets          VERIFIED
+
 Cross-net shorts         NONE DETECTED
 Floating conductor nets  NONE DETECTED
 Body/well connectivity   VERIFIED
@@ -376,8 +427,6 @@ Body/well connectivity   VERIFIED
 ### 3. KLayout LVS
 
 The labelled LVS derivative was extracted and compared against the intended 17-MOS reference schematic.
-
-Final result:
 
 ```text
 MOS total = 17 / 17
@@ -388,30 +437,48 @@ OFFICIAL RESULT:
 NETLISTS MATCH
 ```
 
-KLayout reported:
+Authoritative KLayout result:
 
 ```text
 INFO : Congratulations! Netlists match.
 ```
 
-![Final LVS result](figures/verification/klayout_final_lvs_match.png)
+<p align="center">
+  <img src="figures/verification/klayout_final_lvs_match.png" alt="Final LVS result" width="850">
+</p>
 
-Detailed evidence is preserved under:
+### Verification summary
+
+| Check | Result |
+|---|---|
+| Official SKY130 DRC | **PASS** |
+| DRC violations | **0** |
+| Geometry connectivity audit | **PASS** |
+| Logical conductor nets | **14 / 14** |
+| Cross-net shorts | **None detected** |
+| Floating conductor nets | **None detected** |
+| Body/well connectivity | **PASS** |
+| Official KLayout LVS | **PASS** |
+| LVS comparison | **Netlists match** |
+| Extracted MOS | **17 / 17** |
+| External pins | **8 / 8** |
+
+Detailed evidence:
 
 ```text
 verification/neuron/
 verification/synapse/
 ```
 
-The machine-readable reports, logs, extracted netlists and JSON verification records are the primary verification evidence; screenshots are supporting presentation material.
+Machine-readable logs, databases, extracted netlists and JSON records are the primary verification evidence. Screenshots are supporting presentation material.
 
 ---
 
-## Why DRC Was Not Treated as Sufficient
+## Why DRC Alone Was Not Treated as Sufficient
 
-During development, one intermediate VDD-routed layout passed DRC while an intended `MN_FB` electrical connection was still missing.
+During development, one intermediate VDD-routed layout was DRC-clean while an intended `MN_FB` VDD connection was still missing.
 
-A later VRAW routing attempt also produced an unintended `VRAW`-to-`VSS` MET1 short that was isolated by the independent geometry audit.
+A later VRAW route also created an unintended `VRAW`-to-`VSS` MET1 short that was isolated by the independent geometry audit.
 
 These cases motivated the final verification strategy:
 
@@ -423,13 +490,11 @@ independent geometry/connectivity audit
 LVS
 ```
 
-rather than relying on DRC alone.
+rather than relying on design-rule checking alone.
 
 ---
 
 ## External Interface
-
-The final core exposes eight top-level pins:
 
 | Pin | Function |
 |---|---|
@@ -450,7 +515,7 @@ The final core exposes eight top-level pins:
 NeuroLIF-SKY130/
 │
 ├── circuit/       # reference and LVS schematics
-├── docs/          # architecture, circuit, physical design and verification
+├── docs/          # detailed technical documentation
 ├── figures/       # layout, simulation and verification figures
 ├── layout/        # canonical GDS/OASIS artifacts
 ├── notebooks/     # clean result-analysis notebooks
@@ -463,44 +528,33 @@ NeuroLIF-SKY130/
 └── README.md
 ```
 
-Technical documentation:
+### Documentation
 
-```text
-docs/architecture.md
-docs/circuit_design.md
-docs/physical_design.md
-docs/verification.md
-docs/reproducibility.md
-```
+- [`docs/architecture.md`](docs/architecture.md)
+- [`docs/circuit_design.md`](docs/circuit_design.md)
+- [`docs/physical_design.md`](docs/physical_design.md)
+- [`docs/verification.md`](docs/verification.md)
+- [`docs/reproducibility.md`](docs/reproducibility.md)
 
 ---
 
 ## Reproducibility
 
-The repository provides curated workflows for final verification and result inspection.
+The curated repository supports inspection and reproduction of the final verification workflow.
 
-The following use the current public repository structure:
-
-```text
-public result-analysis notebooks
-final standalone DRC runner
-final standalone LVS runner
-full-neuron connectivity audit
-```
-
-Final DRC runner:
+### Final DRC
 
 ```text
 scripts/klayout/run_final_drc.py
 ```
 
-Final LVS runner:
+### Final LVS
 
 ```text
 scripts/klayout/run_final_lvs.py
 ```
 
-Full-neuron connectivity audit:
+### Full-Neuron Connectivity Audit
 
 ```text
 scripts/verification/neuron/
@@ -509,13 +563,11 @@ audit_full_neuron_connectivity_v1.py
 
 The repository also preserves the successful physical-design lineage.
 
-However, some historical intermediate GDS files and manifests are intentionally not included in the curated public release. The repository therefore should not be interpreted as a complete one-command reconstruction of every historical routing stage from a fresh clone.
+Some historical intermediate GDS files and manifests are intentionally omitted from the curated release. The repository therefore should not be interpreted as a complete one-command replay of every historical routing stage from a fresh clone.
 
 See:
 
-```text
-docs/reproducibility.md
-```
+[`docs/reproducibility.md`](docs/reproducibility.md)
 
 for the exact reproducibility boundary and frozen tool versions.
 
@@ -525,17 +577,25 @@ for the exact reproducibility boundary and frozen tool versions.
 
 Neuromorphic silicon circuits use transistor-level physical dynamics to implement neuron-like state integration, thresholding and spike generation.
 
-NeuroLIF-SKY130 is positioned as an educational open-PDK implementation of these ideas, with emphasis on transistor-level circuit behavior, weighted synaptic input, physical layout and reproducible verification.
+NeuroLIF-SKY130 is an educational open-PDK implementation focused on:
 
-The project is not presented as a new general neuron model or as a fabricated neuromorphic processor.
+- transistor-level neuron behavior
+- weighted electronic synaptic input
+- membrane integration and leak
+- hysteretic threshold detection
+- spike generation and reset
+- physical layout
+- reproducible verification
+
+The project is **not presented as a new general neuron model or as a fabricated neuromorphic processor**.
 
 ---
 
 ## References
 
-1. C. Mead, “Neuromorphic Electronic Systems,” *Proceedings of the IEEE*, vol. 78, no. 10, pp. 1629–1636, 1990. DOI: 10.1109/5.58356.
+1. C. Mead, “Neuromorphic Electronic Systems,” *Proceedings of the IEEE*, vol. 78, no. 10, pp. 1629–1636, 1990. DOI: `10.1109/5.58356`.
 
-2. G. Indiveri et al., “Neuromorphic Silicon Neuron Circuits,” *Frontiers in Neuroscience*, vol. 5, art. 73, 2011. DOI: 10.3389/fnins.2011.00073.
+2. G. Indiveri et al., “Neuromorphic Silicon Neuron Circuits,” *Frontiers in Neuroscience*, vol. 5, art. 73, 2011. DOI: `10.3389/fnins.2011.00073`.
 
 3. SkyWater Technology / Google, *SkyWater SKY130 Open Source PDK Documentation*.
 
@@ -545,18 +605,19 @@ The project is not presented as a new general neuron model or as a fabricated ne
 
 NeuroLIF-SKY130 is a **pre-silicon educational neuromorphic circuit-design project**.
 
-The repository supports claims of:
+### Supported claims
 
 - transistor-level LIF-neuron simulation
 - weighted-synapse characterization
 - nominal functional validation
-- defined PVT and deterministic-variation validation
+- defined PVT validation
+- deterministic-variation validation
 - physical-layout implementation
-- zero-violation official SKY130 DRC
+- official SKY130 DRC with zero violations
 - independent geometry/connectivity verification
 - successful KLayout LVS
 
-The repository does **not** claim:
+### Not claimed
 
 - fabricated silicon
 - tapeout
@@ -571,24 +632,14 @@ PEX and post-layout simulation remain possible future extensions.
 
 ## License
 
-This repository is released under the MIT License.
+Released under the **MIT License**.
 
-See:
-
-```text
-LICENSE
-```
-
-for the complete license text.
+See [`LICENSE`](LICENSE).
 
 ---
 
 ## Citation
 
-A machine-readable citation record is provided in:
-
-```text
-CITATION.cff
-```
+A machine-readable citation record is provided in [`CITATION.cff`](CITATION.cff).
 
 If this repository is used in academic or research work, please cite the project using that record.
